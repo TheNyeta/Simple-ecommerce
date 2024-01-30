@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
+import AccountScreen from '../screens/AccountScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,6 @@ const BottomTabs = () => {
             bottom: 30,
             borderRadius: 30,
             elevation: 10,
-            shadowColor: '#FFB700',
             borderTopWidth: 0,
           }
         }}>
@@ -42,7 +42,17 @@ const BottomTabs = () => {
           options={{
             tabBarLabel: 'Cart',
             tabBarIcon: ({ color }) => (
-              <Icon name="calendar-outline" color={color} size={32} />
+              <Icon name="cart" color={color} size={32} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Account"
+          component={AccountScreen}
+          options={{
+            tabBarLabel: 'Account',
+            tabBarIcon: ({ color }) => (
+              <Icon name="account" color={color} size={32} />
             ),
           }}
         />

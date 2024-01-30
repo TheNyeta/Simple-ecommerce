@@ -3,22 +3,16 @@ import React from 'react'
 import Carousel from 'react-native-snap-carousel'
 import LinearGradient from 'react-native-linear-gradient';
 import { imageArray } from '../constants/constant';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
-const CarouselItem = ({item, index}, parallaxProps) => {
+const CarouselItem = ({item, index}) => {
   return (
-    <View style={{ width: width * 0.8 , height: width * 0.4 }} >
-      {/* <ParallaxImage
-        source={item}
-        containerStyle={{borderRadius: 20}}
-        style={{resizeMode: 'contain'}}
-        parallaxFactor={0.4}
-        {...parallaxProps}
-      /> */}
-      <ImageBackground source={item} resizeMode='cover' className='flex-1' imageStyle={{ borderRadius: 12 }}>
+    <View style={{ width: width * 0.8 , height: height * 0.2 }} >
+      <ImageBackground source={item.image} resizeMode='cover' className='flex-1' imageStyle={{ borderRadius: 12 }}>
         <LinearGradient className='flex-1 justify-end rounded-xl' colors={['transparent', '#00000099']}>
-          <Text className='text-white font-semibold text-xl p-2' >Home Decoration</Text>
+          <Text className='text-white font-semibold text-xl p-2' >{item.title}</Text>
         </LinearGradient>
       </ImageBackground>
     </View>
@@ -26,6 +20,9 @@ const CarouselItem = ({item, index}, parallaxProps) => {
 }
 
 const ImageCarousel = () => {
+
+  const navigaiton = useNavigation()
+
   return (
     <Carousel 
       data={imageArray}
@@ -37,7 +34,7 @@ const ImageCarousel = () => {
       sliderWidth={width}
       itemWidth={width * 0.8}
       // hasParallaxImages={true}
-      slideStyle={{display: 'flex', alignItems: 'center'}}
+      // slideStyle={{display: 'flex', alignItems: 'center'}}
 
     />
   )

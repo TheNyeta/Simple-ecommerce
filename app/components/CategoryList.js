@@ -2,10 +2,12 @@ import { View, Text, FlatList, Pressable, Image, ActivityIndicator } from 'react
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { categoryImage } from '../constants/constant'
+import Animated from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native'
 
-const CategoryItem = ({item, index}) => {
+const CategoryItem = ({item, index, navigation}) => {
   return (
-    <Pressable className='flex-1 w-24 items-center' onPress={() => console.log('dipencet')}>
+    <Pressable className='w-24 items-center' onPress={() => navigation.navigate('Categories', {item})}>
       <View className='bg-gray-200 p-2 rounded-lg items-center justify-center'>
         <Image className='w-10 h-10' source={categoryImage[index]} />
       </View>
@@ -21,6 +23,8 @@ const CategoryList = () => {
   const [category, setCategory] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
+  const navigaiton = useNavigation()
+
   useEffect(() => {
     axios.get('https://dummyjson.com/products/categories')
       .then(({data}) => {
@@ -32,17 +36,14 @@ const CategoryList = () => {
   }, [])
 
   return (
-    <View className='flex-1 mx-3'>
-      <Text className='my-2 text-black text-3xl font-bold' >
-        Categories
-      </Text>
+    <View className='mx-3'>
       { isLoading ? 
-        <ActivityIndicator color={'gray'} size={60}/> 
+        <ActivityIndicator className='my-2' color={'gray'} size={60}/> 
         : 
         <FlatList
           data={category}
           horizontal={true}
-          renderItem={CategoryItem}
+          renderItem={({item, index}) => <CategoryItem item={item} index={index} navigation={navigaiton} />}
           showsHorizontalScrollIndicator={false}
         />
       }

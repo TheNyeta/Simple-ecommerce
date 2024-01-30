@@ -8,8 +8,8 @@ import CategoryList from '../components/CategoryList';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView className='flex-1 bg-white'>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView className='flex-1'>
+      <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}>
         <View className='flex-row items-center m-3'>
           <Pressable className='flex-1 flex-row items-center bg-gray-200 h-10 p-2 rounded-md'>
             <Icon name='magnify' size={24} color='gray' />
@@ -24,15 +24,17 @@ const HomeScreen = () => {
             <Icon name='cart-outline' size={26} color='gray' />
           </TouchableOpacity>
         </View>
-        <View>
+        <View className=''>
           <ImageCarousel />
         </View>
-        <View>
-          <CategoryList />
-        </View>
-        <View>
-          <ProductList />
-        </View>
+        <Text className='m-3 text-black text-3xl font-bold'>
+          Categories
+        </Text>
+        <CategoryList />
+        <Text className='mx-3 text-black text-3xl font-bold'>
+          New Arival
+        </Text>
+        <ProductList />
       </ScrollView>
     </SafeAreaView>
   )

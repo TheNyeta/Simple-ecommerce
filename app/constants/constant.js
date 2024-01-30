@@ -1,8 +1,19 @@
-export const imageArray = [
-  require('../assets/images/clothes.jpg'),
-  require('../assets/images/furniture.jpg'),
-  require('../assets/images/homedecoration.jpg'),
-  require('../assets/images/smartphone.jpg')
+export const imageArray = [{
+  title: 'Clothes',
+  image: require('../assets/images/clothes.jpg')
+},
+{
+  title: 'Furniture',
+  image: require('../assets/images/furniture.jpg')
+},
+{
+  title: 'Home Decoration',
+  image: require('../assets/images/homedecoration.jpg')
+},
+{
+  title: 'Smartphone',
+  image: require('../assets/images/smartphone.jpg')
+}
 ]
 
 export const categoryImage = [
