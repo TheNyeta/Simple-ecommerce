@@ -5,8 +5,13 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImageCarousel from '../components/ImageCarousel';
 import ProductList from '../components/ProductList';
 import CategoryList from '../components/CategoryList';
+import { useSelector } from 'react-redux';
 
 const HomeScreen = () => {
+
+  const cart = useSelector((state) => state.cart.cart)
+  console.log(cart)
+
   return (
     <SafeAreaView className='flex-1'>
       <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}>

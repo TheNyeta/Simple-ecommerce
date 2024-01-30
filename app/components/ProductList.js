@@ -33,7 +33,7 @@ const ProductItem = ({item, index, navigation}) => {
 }
 
 const ProductList = (props) => {
-  console.log(props)
+
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
