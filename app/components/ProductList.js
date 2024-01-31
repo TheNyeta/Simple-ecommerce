@@ -11,7 +11,7 @@ const { width, height } = Dimensions.get('window');
 const ProductItem = ({item, index, navigation}) => {
   return (
     <Animated.View entering={FadeInDown.delay(index*100).duration(300).springify()}>
-      <Pressable className='bg-white my-2 rounded-xl mx-2' style={{ elevation: 4 }} onPress={() => navigation.navigate('ProductDetail', {item})} >
+      <Pressable className='bg-white my-2 rounded-xl mx-2' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} onPress={() => navigation.navigate('ProductDetail', {item})} >
         <Image className='rounded-t-xl' style={{ width: '100%', height: width * 0.45 }} source={{uri: item.thumbnail}} resizeMode='cover'/>
         <View className='p-2' style={{ width: width * 0.45 }}>
           <Text className='text-black text-md text-wrap'>
