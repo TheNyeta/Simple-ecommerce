@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Dimensions, StatusBar, Pressable } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductImageCarousel from '../components/ProductImageCarousel'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,6 +8,7 @@ import ProductList from '../components/ProductList';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/reducer/CartReducer';
+import { addToFavorite, removeFromFavorite } from '../../redux/reducer/FavoriteReducer';
 
 const { width, height } = Dimensions.get('window');
 
@@ -18,16 +19,29 @@ const ProductDetailScreen = (props) => {
   const images = [item.thumbnail].concat(item.images)
   const [liked, setLiked] = useState(false)
   const dispatch = useDispatch()
+  const favorite = useSelector((state) => state.favorite.favorite)
+  console.log(favorite)
+
+  useEffect(() => {
+    const itemInFavorite = favorite.find((product) => product.id === item.id)
+    if (itemInFavorite) {
+      setLiked(true)
+    }
+  }, [])
 
   const handleLike = () => {
-    setLiked(!liked)
+    if (liked) {
+      dispatch(removeFromFavorite(item))
+      setLiked(false)
+    } else {
+      dispatch(addToFavorite(item))
+      setLiked(true)
+    }
   }
 
   const addItemToCart = (item) => {
     dispatch(addToCart(item))
   }
-  const cart = useSelector((state) => state.cart.cart)
-  console.log(cart)
 
   return (
     <View className='flex-1'>
