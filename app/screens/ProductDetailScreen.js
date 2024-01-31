@@ -6,6 +6,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 import ProductList from '../components/ProductList';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../redux/reducer/CartReducer';
 
 const { width, height } = Dimensions.get('window');
 
@@ -15,10 +17,17 @@ const ProductDetailScreen = (props) => {
   const item = props.route.params.item
   const images = [item.thumbnail].concat(item.images)
   const [liked, setLiked] = useState(false)
+  const dispatch = useDispatch()
 
   const handleLike = () => {
     setLiked(!liked)
   }
+
+  const addItemToCart = (item) => {
+    dispatch(addToCart(item))
+  }
+  const cart = useSelector((state) => state.cart.cart)
+  console.log(cart)
 
   return (
     <View className='flex-1'>
@@ -71,7 +80,7 @@ const ProductDetailScreen = (props) => {
             <Text className='text-black text-lg'>
               Category:
             </Text>
-            <Text className='text-black text-lg'>
+            <Text className='text-black text-lg capitalize'>
             {item.category}
             </Text>
           </View>
@@ -89,7 +98,7 @@ const ProductDetailScreen = (props) => {
         </Pressable>
       </SafeAreaView>
       <View className='w-full p-2 flex-row items-center justify-end absolute bottom-0 bg-white' style={{ height: height * 0.08 }}>
-        <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }}>
+        <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }} onPress={() => addItemToCart(item)}>
           <Text className='p-2 text-black text-2xl text-wrap font-bold'>
             Add to cart
           </Text>

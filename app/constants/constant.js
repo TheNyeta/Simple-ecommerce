@@ -1,17 +1,17 @@
 export const imageArray = [{
-  title: 'Clothes',
+  title: 'tops',
   image: require('../assets/images/clothes.jpg')
 },
 {
-  title: 'Furniture',
+  title: 'furniture',
   image: require('../assets/images/furniture.jpg')
 },
 {
-  title: 'Home Decoration',
+  title: 'home-decoration',
   image: require('../assets/images/homedecoration.jpg')
 },
 {
-  title: 'Smartphone',
+  title: 'smartphones',
   image: require('../assets/images/smartphone.jpg')
 }
 ]

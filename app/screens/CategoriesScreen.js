@@ -29,7 +29,7 @@ const CategoriesScreen = (props) => {
           <Icon name='arrow-left' size={30} color='black' />
         </Pressable>
         <Text className='mx-3 text-black text-3xl font-bold capitalize'>
-            {category}
+            {category.replace('-', ' ')}
         </Text>
         {isLoading ?
           <ActivityIndicator color={'gray'} size={60}/>

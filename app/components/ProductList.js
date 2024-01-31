@@ -11,8 +11,8 @@ const { width, height } = Dimensions.get('window');
 const ProductItem = ({item, index, navigation}) => {
   return (
     <Animated.View entering={FadeInDown.delay(index*100).duration(300).springify()}>
-      <Pressable className='bg-white my-2 rounded-xl' style={{ width: width * 0.45, elevation: 4 }} onPress={() => navigation.navigate('ProductDetail', {item})} >
-        <Image className='rounded-t-xl' style={{ width: width * 0.45, height: width * 0.45 }} source={{uri: item.thumbnail}} resizeMode='cover'/>
+      <Pressable className='bg-white my-2 rounded-xl mx-2' style={{ elevation: 4 }} onPress={() => navigation.navigate('ProductDetail', {item})} >
+        <Image className='rounded-t-xl' style={{ width: '100%', height: width * 0.45 }} source={{uri: item.thumbnail}} resizeMode='cover'/>
         <View className='p-2' style={{ width: width * 0.45 }}>
           <Text className='text-black text-md text-wrap'>
             {item.title}
@@ -55,7 +55,7 @@ const ProductList = (props) => {
   }, [])
 
   return (
-    <View className=''>
+    <View className='flex-1'>
       { isLoading ? 
         <ActivityIndicator color={'gray'} size={60}/> 
         : 
@@ -64,7 +64,7 @@ const ProductList = (props) => {
           numColumns={2}
           renderItem={({item, i}) => <ProductItem item={item} index={i} navigation={navigaiton} />}
           scrollEnabled={false}
-          contentContainerStyle={{ justifyContent: 'space-between', paddingHorizontal: 12 }}
+          contentContainerStyle={{ paddingHorizontal: 6 }}
         />
       }
     </View>
