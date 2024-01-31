@@ -15,32 +15,31 @@ const { width, height } = Dimensions.get('window');
 const ProductDetailScreen = (props) => {
 
   const navigation = props.navigation
-  const item = props.route.params.item
-  const images = [item.thumbnail].concat(item.images)
+  const product = props.route.params.item
+  const images = [product.thumbnail].concat(product.images)
   const [liked, setLiked] = useState(false)
   const dispatch = useDispatch()
   const favorite = useSelector((state) => state.favorite.favorite)
-  console.log(favorite)
 
   useEffect(() => {
-    const itemInFavorite = favorite.find((product) => product.id === item.id)
-    if (itemInFavorite) {
+    const productInFavorite = favorite.find((item) => item.id === product.id)
+    if (productInFavorite) {
       setLiked(true)
     }
   }, [])
 
   const handleLike = () => {
     if (liked) {
-      dispatch(removeFromFavorite(item))
+      dispatch(removeFromFavorite(product))
       setLiked(false)
     } else {
-      dispatch(addToFavorite(item))
+      dispatch(addToFavorite(product))
       setLiked(true)
     }
   }
 
-  const addItemToCart = (item) => {
-    dispatch(addToCart(item))
+  const addItemToCart = () => {
+    dispatch(addToCart(product))
   }
 
   return (
@@ -51,16 +50,16 @@ const ProductDetailScreen = (props) => {
         <View className='w-full flex-row justify-between p-2 bg-white'>
           <View>
             <Text className='text-black text-lg text-wrap'>
-              {item.title}
+              {product.title}
             </Text>
             <View className='flex-row items-center'>
               <Icon name='star' size={24} color='gold' />
               <Text className='text-black text-lg'>
-              {item.rating}
+              {product.rating}
               </Text>
             </View>
             <Text className='text-black text-xl text-wrap font-bold'>
-              {'$' + item.price}
+              {'$' + product.price}
             </Text>
           </View>
           <Pressable className='m-2 bg-white rounded-full' onPress={() => handleLike()}>
@@ -80,14 +79,14 @@ const ProductDetailScreen = (props) => {
             Description
           </Text>
           <Text className='text-black text-lg text-wrap'>
-            {item.description}
+            {product.description}
           </Text>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
             <Text className='text-black text-lg'>
               Brand:
             </Text>
             <Text className='text-black text-lg'>
-            {item.brand}
+            {product.brand}
             </Text>
           </View>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
@@ -95,7 +94,7 @@ const ProductDetailScreen = (props) => {
               Category:
             </Text>
             <Text className='text-black text-lg capitalize'>
-            {item.category}
+            {product.category}
             </Text>
           </View>
         </View>
@@ -112,7 +111,7 @@ const ProductDetailScreen = (props) => {
         </Pressable>
       </SafeAreaView>
       <View className='w-full p-2 flex-row items-center justify-end absolute bottom-0 bg-white' style={{ height: height * 0.08 }}>
-        <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }} onPress={() => addItemToCart(item)}>
+        <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }} onPress={() => addItemToCart()}>
           <Text className='p-2 text-black text-2xl text-wrap font-bold'>
             Add to cart
           </Text>
