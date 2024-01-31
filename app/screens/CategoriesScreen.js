@@ -25,12 +25,14 @@ const CategoriesScreen = (props) => {
   return (
     <SafeAreaView className='flex-1 bg-white'>
       <ScrollView>
-        <Pressable className='m-3' onPress={() => navigation.goBack()}>
-          <Icon name='arrow-left' size={30} color='black' />
-        </Pressable>
-        <Text className='mx-3 text-black text-3xl font-bold capitalize'>
-            {category.replace('-', ' ')}
-        </Text>
+        <View className='flex-row items-center'>
+          <Pressable className='m-3' onPress={() => navigation.goBack()}>
+            <Icon name='arrow-left' size={30} color='black' />
+          </Pressable>
+          <Text className='text-black text-2xl font-bold capitalize'>
+              {category.replace('-', ' ')}
+          </Text>
+        </View>
         {isLoading ?
           <ActivityIndicator color={'gray'} size={60}/>
           :

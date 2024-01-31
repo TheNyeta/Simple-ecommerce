@@ -7,6 +7,7 @@ import SplashScreen from '../screens/SplashScreen';
 import BottomTabs from './BottomTabs';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import CategoriesScreen from '../screens/CategoriesScreen';
+import CartScreen from '../screens/CartScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ const Navigation = () => {
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
         <Stack.Screen name="Categories" component={CategoriesScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

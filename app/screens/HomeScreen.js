@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Pressable, TouchableOpacity} from 'react-native'
+import { View, Text, ScrollView, Pressable, TouchableOpacity, StatusBar} from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,25 +7,23 @@ import ProductList from '../components/ProductList';
 import CategoryList from '../components/CategoryList';
 import { useSelector } from 'react-redux';
 
-const HomeScreen = () => {
-
-  const cart = useSelector((state) => state.cart.cart)
-  console.log(cart)
+const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView className='flex-1'>
+      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
       <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}>
-        <View className='flex-row items-center m-3'>
+        <View className='flex-row items-center p-3'>
           <Pressable className='flex-1 flex-row items-center bg-gray-200 h-10 p-2 rounded-md'>
             <Icon name='magnify' size={24} color='gray' />
             <Text>
               Search Items...
             </Text>
           </Pressable>
-          <TouchableOpacity className='p-1'>
+          {/* <TouchableOpacity className='p-1'>
             <Icon name='heart-outline' size={26} color='gray' />
-          </TouchableOpacity>
-          <TouchableOpacity className='p-1'>
+          </TouchableOpacity> */}
+          <TouchableOpacity className='p-2' onPress={() => navigation.navigate('Cart')}>
             <Icon name='cart-outline' size={26} color='gray' />
           </TouchableOpacity>
         </View>
