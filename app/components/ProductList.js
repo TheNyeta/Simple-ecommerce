@@ -18,7 +18,7 @@ const ProductItem = ({item, index, navigation}) => {
             {item.title}
           </Text>
           <Text className='text-black text-lg text-wrap font-bold'>
-            {'$' + item.price}
+            {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
           <View className='flex-row items-center'>
             <Icon name='star' size={20} color='gold' />

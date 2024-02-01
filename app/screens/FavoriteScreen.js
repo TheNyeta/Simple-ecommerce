@@ -24,7 +24,7 @@ const FavoriteScreen = ({navigation}) => {
             </Text>
           </View>
           :
-          <ProductList products={favorite} />
+          <ProductList products={favorite} key={favorite} />
         }
       </ScrollView>
     </SafeAreaView>

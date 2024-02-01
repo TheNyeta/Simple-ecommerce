@@ -59,7 +59,7 @@ const ProductDetailScreen = (props) => {
               </Text>
             </View>
             <Text className='text-black text-xl text-wrap font-bold'>
-              {'$' + product.price}
+              {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </Text>
           </View>
           <Pressable className='m-2 bg-white rounded-full' onPress={() => handleLike()}>
@@ -114,7 +114,7 @@ const ProductDetailScreen = (props) => {
         <LinearGradient colors={['transparent', '#00000030']} style={{ height: height * 0.01 }}/>
         <View className='p-2 flex-row items-center justify-end bg-white' style={{ height: height * 0.08 }}>
           <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }} onPress={() => addItemToCart()}>
-            <Text className='p-2 text-black text-2xl text-wrap font-bold'>
+            <Text className='p-2 text-black text-xl text-wrap font-bold'>
               Add to cart
             </Text>
           </Pressable>
