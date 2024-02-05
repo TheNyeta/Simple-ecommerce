@@ -57,7 +57,7 @@ const ProductList = (props) => {
   return (
     <View className='flex-1'>
       { isLoading ? 
-        <ActivityIndicator color={'gray'} size={60}/> 
+        <ActivityIndicator className='my-10' color={'black'} size={100}/> 
         : 
         <MasonryList
           data={products}

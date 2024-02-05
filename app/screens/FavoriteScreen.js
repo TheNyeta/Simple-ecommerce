@@ -19,7 +19,7 @@ const FavoriteScreen = ({navigation}) => {
             Favorites
         </Text>
         {favorite.length == 0 ?
-          <Animated.View className='flex-1 items-center mt-32' entering={FadeIn}>
+          <Animated.View className='flex-1 items-center mt-32' entering={FadeIn.delay(300)}>
             <Icon name='heart-off' size={100}/>
             <Text className='text-black text-2xl mt-6'>
               You have no item favorites

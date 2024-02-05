@@ -25,7 +25,7 @@ const CartScreen = ({navigation}) => {
     <SafeAreaView className='flex-1 bg-white'>
       {/* <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}> */}
         <View className='flex-row items-center'>
-          <Pressable className='m-3' onPress={() => navigation.goBack()}>
+          <Pressable className='p-2' onPress={() => navigation.goBack()}>
             <Icon name='arrow-left' size={30} color='black' />
           </Pressable>
           <Text className='text-black text-2xl font-bold'>
@@ -33,7 +33,7 @@ const CartScreen = ({navigation}) => {
           </Text>
         </View>
         {cart.length == 0 ?
-          <Animated.View className='flex-1 items-center mt-32' entering={FadeIn.delay(500)}>
+          <Animated.View className='flex-1 items-center mt-32' entering={FadeIn.delay(300)}>
             <Icon name='cart-off' size={100}/>
             <Text className='text-black text-2xl mt-6'>
               You have no item cart

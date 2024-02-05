@@ -38,7 +38,7 @@ const CategoryList = () => {
   return (
     <View className='mx-3'>
       { isLoading ? 
-        <ActivityIndicator className='my-2' color={'gray'} size={60}/> 
+        <ActivityIndicator className='my-2' color={'black'} size={60}/> 
         : 
         <Animated.FlatList
           data={category}

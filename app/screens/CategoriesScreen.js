@@ -34,7 +34,7 @@ const CategoriesScreen = (props) => {
           </Text>
         </View>
         {isLoading ?
-          <ActivityIndicator color={'gray'} size={60}/>
+          <ActivityIndicator className='my-10' color={'black'} size={100}/>
           :
           <ProductList products={products} />
         }
