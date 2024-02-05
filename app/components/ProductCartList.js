@@ -3,13 +3,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../redux/reducer/CartReducer';
-import Animated, { FadeInDown, FadeOut, LinearTransition } from 'react-native-reanimated';
+import Animated, { FadeInDown, FadeOut, FadeOutLeft, LinearTransition } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('window');
 
 const CartItem = ({item, index, incrementQuantity, decrementQuantity, deleteProduct}) => {
   return (
-    <Animated.View className='flex-row p-4 mx-3 my-2 rounded-xl bg-white' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} entering={FadeInDown.delay(index * 100 + 200).springify()} >
+    <Animated.View className='flex-row p-4 my-2 rounded-xl bg-white' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} entering={FadeInDown.delay(index * 100 + 200).springify()} exiting={FadeOutLeft} >
       <Pressable>
         <Image className='rounded-xl' source={{uri: item.thumbnail}} style={{ width: width * 0.3, height: width * 0.3 }} />
       </Pressable>
@@ -44,7 +44,6 @@ const CartItem = ({item, index, incrementQuantity, decrementQuantity, deleteProd
 const ProductCartList = () => {
 
   const cart = useSelector((state) => state.cart.cart)
-  console.log(cart)
   const dispatch = useDispatch()
 
   const incrementQuantity = (item) => {
@@ -62,12 +61,14 @@ const ProductCartList = () => {
   }
 
   return (
-    <View>
+    <View className='flex-1'>
       <Animated.FlatList 
         data={cart}
         renderItem={({item, index}) => <CartItem item={item} index={index} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} deleteProduct={deleteProduct} />}
-        scrollEnabled={false}
-        // itemLayoutAnimation={LinearTransition}
+        scrollEnabled={true}
+        itemLayoutAnimation={LinearTransition.delay(500)}
+        removeClippedSubviews={false}
+        contentContainerStyle={{flex: 1, padding: 12}}
       />
     </View>
   )

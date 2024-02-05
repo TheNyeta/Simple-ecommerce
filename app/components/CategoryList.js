@@ -2,7 +2,7 @@ import { View, Text, FlatList, Pressable, Image, ActivityIndicator } from 'react
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { categoryImage } from '../constants/constant'
-import Animated from 'react-native-reanimated'
+import Animated, { FadeInUp } from 'react-native-reanimated'
 import { useNavigation } from '@react-navigation/native'
 
 const CategoryItem = ({item, index, navigation}) => {
@@ -40,11 +40,12 @@ const CategoryList = () => {
       { isLoading ? 
         <ActivityIndicator className='my-2' color={'gray'} size={60}/> 
         : 
-        <FlatList
+        <Animated.FlatList
           data={category}
           horizontal={true}
           renderItem={({item, index}) => <CategoryItem item={item} index={index} navigation={navigaiton} />}
           showsHorizontalScrollIndicator={false}
+          entering={FadeInUp}
         />
       }
     </View>

@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import ProductList from '../components/ProductList';
+import Animated, { FadeIn } from 'react-native-reanimated';
+Animated
 
 const FavoriteScreen = ({navigation}) => {
 
@@ -17,12 +19,12 @@ const FavoriteScreen = ({navigation}) => {
             Favorites
         </Text>
         {favorite.length == 0 ?
-          <View className='flex-1 items-center mt-32'>
+          <Animated.View className='flex-1 items-center mt-32' entering={FadeIn}>
             <Icon name='heart-off' size={100}/>
             <Text className='text-black text-2xl mt-6'>
               You have no item favorites
             </Text>
-          </View>
+          </Animated.View>
           :
           <ProductList products={favorite} key={favorite} />
         }
