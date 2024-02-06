@@ -24,7 +24,7 @@ const CartScreen = ({navigation}) => {
   return (
     <SafeAreaView className='flex-1 bg-white'>
       {/* <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}> */}
-        <View className='flex-row items-center'>
+        <View className='flex-row items-center' style={{ height: height * 0.07 }}>
           <Pressable className='p-2' onPress={() => navigation.goBack()}>
             <Icon name='arrow-left' size={30} color='black' />
           </Pressable>

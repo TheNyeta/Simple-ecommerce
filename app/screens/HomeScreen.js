@@ -11,6 +11,9 @@ const { width, height } = Dimensions.get('window');
 
 const HomeScreen = ({navigation}) => {
 
+  const cart = useSelector((state) => state.cart.cart)
+  const totalQuantity = cart.map((item) => item.quantity).reduce((prev, curr) => prev + curr, 0)
+
   return (
     <SafeAreaView className='flex-1' style={{ paddingTop: height * 0.07 }}>
       <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
@@ -47,6 +50,13 @@ const HomeScreen = ({navigation}) => {
         </Pressable>
         <TouchableOpacity className='p-2' onPress={() => navigation.navigate('Cart')}>
           <Icon name='cart-outline' size={26} color='black' />
+          {cart.length != 0 &&
+            <View className='absolute right-1 top-0 rounded-full w-5 h-5 bg-red-500 items-center justify-center'>
+              <Text className='text-white text-xs'>
+                {totalQuantity}
+              </Text>
+            </View>
+          }
         </TouchableOpacity>
       </View>
     </SafeAreaView>

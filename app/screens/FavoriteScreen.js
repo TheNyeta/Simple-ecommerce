@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, Pressable } from 'react-native'
+import { View, Text, ScrollView, Pressable, Dimensions } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 import ProductList from '../components/ProductList';
 import Animated, { FadeIn } from 'react-native-reanimated';
-Animated
+
+const { width, height } = Dimensions.get('window');
 
 const FavoriteScreen = ({navigation}) => {
 
@@ -15,9 +16,11 @@ const FavoriteScreen = ({navigation}) => {
   return (
     <SafeAreaView className='flex-1'>
       <ScrollView className='flex-1 bg-white' showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 80}}>
-        <Text className='m-3 text-black text-2xl font-bold'>
-            Favorites
-        </Text>
+        <View className='flex-row items-center' style={{ height: height * 0.07 }}>
+          <Text className='m-3 text-black text-2xl font-bold'>
+              Favorites
+          </Text>
+        </View>
         {favorite.length == 0 ?
           <Animated.View className='flex-1 items-center mt-32' entering={FadeIn.delay(300)}>
             <Icon name='heart-off' size={100}/>
