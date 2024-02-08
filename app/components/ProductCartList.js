@@ -4,19 +4,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../redux/reducer/CartReducer';
 import Animated, { FadeInDown, FadeOut, FadeOutLeft, LinearTransition } from 'react-native-reanimated';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
-const CartItem = ({item, index, incrementQuantity, decrementQuantity, deleteProduct}) => {
+const CartItem = ({item, index, incrementQuantity, decrementQuantity, deleteProduct, navigation}) => {
   return (
     <Animated.View className='flex-row p-4 my-2 rounded-xl bg-white' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} entering={FadeInDown.delay(index * 100 + 200).springify()} exiting={FadeOutLeft} >
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate('ProductDetail', {item})}>
         <Image className='rounded-xl' source={{uri: item.thumbnail}} style={{ width: width * 0.3, height: width * 0.3 }} />
       </Pressable>
       <View className='flex-1 ml-3 justify-between'>
         <View>
           <Text className='text-black text-lg text-wrap' numberOfLines={2} >
-            {item.title + 'test aja ini kalo gini kenapa'}
+            {item.title}
           </Text>
           <Text className='text-black text-lg text-wrap font-bold'>
             {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
@@ -45,6 +46,7 @@ const ProductCartList = () => {
 
   const cart = useSelector((state) => state.cart.cart)
   const dispatch = useDispatch()
+  const navigation = useNavigation()
 
   const incrementQuantity = (item) => {
     if (item.quantity <= item.stock) {
@@ -64,7 +66,7 @@ const ProductCartList = () => {
     <View className='flex-1'>
       <Animated.FlatList 
         data={cart}
-        renderItem={({item, index}) => <CartItem item={item} index={index} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} deleteProduct={deleteProduct} />}
+        renderItem={({item, index}) => <CartItem item={item} index={index} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} deleteProduct={deleteProduct} navigation={navigation} />}
         scrollEnabled={true}
         itemLayoutAnimation={LinearTransition.delay(500)}
         removeClippedSubviews={false}

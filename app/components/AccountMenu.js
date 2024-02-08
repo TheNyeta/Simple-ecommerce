@@ -1,13 +1,17 @@
 import { View, Text, Pressable, Dimensions } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 const AccountMenu = () => {
+
+  const navigation = useNavigation()
+
   return (
     <View className='flex-1 w-full my-10'>
-      <Pressable className='flex-1 flex-row p-2 items-center justify-between'>
+      <Pressable className='flex-1 flex-row p-2 items-center justify-between' onPress={() => navigation.navigate('OrderHistory')}>
         <View className='flex-row items-center'>
           <Icon name='clipboard-list-outline' size={30} color='black' />
           <Text className='text-black text-lg ml-2 font-bold'>

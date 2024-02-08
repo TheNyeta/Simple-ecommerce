@@ -10,6 +10,8 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CartScreen from '../screens/CartScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SearchResultScreen from '../screens/SearchResultScreen';
+import OrderHistoryScreen from '../screens/OrderHistoryScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +26,8 @@ const Navigation = () => {
         <Stack.Screen name="Cart" component={CartScreen} />
         <Stack.Screen name="Search" component={SearchScreen} options={{ animation: 'none' }} />
         <Stack.Screen name="SearchResult" component={SearchResultScreen} />
+        <Stack.Screen name="OrderHistory" component={OrderHistoryScreen} />
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -26,7 +26,7 @@ const SearchHistory = () => {
       {searchHistory.length != 0 &&
         searchHistory.map((keyword) => {
           return (
-            <View className='flex-row items-center justify-between mx-3 my-1'>
+            <View className='flex-row items-center justify-between mx-3 my-1' key={keyword}>
               <Pressable className='flex-1 flex-row items-center' onPress={() => handlePress(keyword)}>
                 <Icon name='clock-outline' size={26} color='gray' />
                 <Text className='text-black p-2 text-md'>

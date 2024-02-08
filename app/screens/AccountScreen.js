@@ -3,24 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import axios from 'axios';
 import AccountMenu from '../components/AccountMenu';
+import { useSelector } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
 const AccountScreen = () => {
 
-  const [account, setAccount] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    axios.get('https://dummyjson.com/users/1')
-      .then(({data}) => {
-        setAccount(data)
-        console.log(data)
-        setIsLoading(false)
-      }).catch((error) => {
-        console.log(error)
-      })
-  }, [])
+  const account = useSelector((state) => state.account.account)
+  console.log(account)
+  const [isLoading, setIsLoading] = useState(false)
 
   return (
     <SafeAreaView className='flex-1'>
@@ -31,7 +22,7 @@ const AccountScreen = () => {
           </Text>
         </View>
         { isLoading ? 
-          <ActivityIndicator className='my-2' color={'black'} size={60}/> 
+          <ActivityIndicator className='my-10' color={'black'} size={60}/> 
           :
           <View className='flex-1 m-3 items-center'>
             <View className='flex-row items-center'>

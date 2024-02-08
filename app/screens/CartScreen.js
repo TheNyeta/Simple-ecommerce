@@ -18,7 +18,8 @@ const CartScreen = ({navigation}) => {
   const dispatch = useDispatch()
 
   const handleCheckout = () => {
-    dispatch(cleanCart())
+    navigation.navigate('Checkout')
+    // dispatch(cleanCart())
   }
 
   return (
@@ -49,7 +50,7 @@ const CartScreen = ({navigation}) => {
           <Text className='p-2 text-black text-xl text-wrap font-bold'>
             {'Total: ' + totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
-          <Pressable className='justify-center items-center rounded-xl bg-[#398E7D]' style={{ width: width * 0.5 }} onPress={() => handleCheckout()}>
+          <Pressable className='justify-center items-center rounded-xl' style={{ width: width * 0.5, backgroundColor: cart.length == 0 ? 'gray' : 'green' }} disabled={cart.length == 0 ? true : false} onPress={() => handleCheckout()}>
             <Text className='p-2 text-white text-xl text-wrap font-bold'>
               Checkout
             </Text>

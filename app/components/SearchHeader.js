@@ -29,9 +29,6 @@ const SearchHeader = (props) => {
         <Icon name='magnify' size={24} color='gray' />
         <TextInput className='flex-1 text-left text-md h-10 p-1' value={keyword} onChangeText={(text) => setKeyword(text)} placeholder='Search item...' autoFocus={props.keyword == undefined ? true : false} returnKeyType='search' onSubmitEditing={() => handleSubmit()} />
       </Pressable>
-      {/* <TouchableOpacity className='p-1'>
-        <Icon name='heart-outline' size={26} color='gray' />
-      </TouchableOpacity> */}
       <TouchableOpacity className='p-2' onPress={() => navigation.navigate('Cart')}>
         <Icon name='cart-outline' size={26} color='black' />
         {cart.length != 0 &&
