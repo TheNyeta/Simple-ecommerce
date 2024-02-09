@@ -33,18 +33,18 @@ const OrderSummary = () => {
       
       <View className='my-2'>
         <View className='flex-row items-center justify-between'>
-          <Text className='text-black text-md'>
+          <Text className='text-gray text-md'>
             Subtotal:
           </Text>
-          <Text className='text-black text-md font-bold'>
+          <Text className='text-black text-md'>
             {totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
         </View>
         <View className='flex-row items-center justify-between'>
-          <Text className='text-black text-md'>
+          <Text className='text-gray text-md'>
             Shipping:
           </Text>
-          <Text className='text-black text-md font-bold'>
+          <Text className='text-black text-md'>
             {shippingPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
         </View>

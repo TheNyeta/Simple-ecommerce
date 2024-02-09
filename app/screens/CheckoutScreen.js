@@ -3,10 +3,14 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OrderSummary from '../components/OrderSummary';
+import { useSelector } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
 const CheckoutScreen = ({navigation}) => {
+
+  const address = useSelector((state) => state.account.address)
+  console.log(address)
 
   return (
     <SafeAreaView className='flex-1 bg-white'>
@@ -20,17 +24,28 @@ const CheckoutScreen = ({navigation}) => {
       </View>
       <ScrollView>
         <View className='mx-3'>
-          <Text className='text-black text-xl font-bold'>
+          <Text className='text-black text-lg font-bold'>
             Delivery Address
           </Text>
+          <Pressable className='flex-row py-1 justify-between'>
+            <View className=''>
+              <Text className='text-gray text-md'>
+                {address.address}
+              </Text>
+              <Text className='text-gray text-md'>
+                {address.city + ', ' + address.state + ', ' + address.postalCode}
+              </Text>
+            </View>
+            <Icon name='chevron-right' size={30} color='black' />
+          </Pressable>
         </View>
         <View className='m-3'>
-          <Text className='text-black text-xl font-bold'>
+          <Text className='text-black text-lg font-bold'>
             Order Summary
           </Text>
           <OrderSummary />
         </View>
-        <Pressable className='p-2 items-center m-3 bg-green-500 rounded-xl'>
+        <Pressable className='p-2 items-center mx-3 bg-green-500 rounded-xl'>
           <Text className='text-white text-2xl font-bold'>
             Buy Now
           </Text>

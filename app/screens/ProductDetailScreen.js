@@ -9,6 +9,7 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/reducer/CartReducer';
 import { addToFavorite, removeFromFavorite } from '../../redux/reducer/FavoriteReducer';
+import Toast from 'react-native-toast-message';
 
 const { width, height } = Dimensions.get('window');
 
@@ -40,6 +41,13 @@ const ProductDetailScreen = (props) => {
 
   const addItemToCart = () => {
     dispatch(addToCart(product))
+    Toast.show({
+      type: 'success',
+      text1: 'Added to cart',
+      // text2: 'This is some something 👋',
+      topOffset: height * 0.07,
+      text1Style: {fontSize: 20}
+    });
   }
 
   return (
@@ -82,7 +90,7 @@ const ProductDetailScreen = (props) => {
             {product.description}
           </Text>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
-            <Text className='text-black text-lg'>
+            <Text className='text-gray text-lg'>
               Brand:
             </Text>
             <Text className='text-black text-lg'>
@@ -90,7 +98,7 @@ const ProductDetailScreen = (props) => {
             </Text>
           </View>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
-            <Text className='text-black text-lg'>
+            <Text className='text-gray text-lg'>
               Category:
             </Text>
             <Text className='text-black text-lg capitalize'>
