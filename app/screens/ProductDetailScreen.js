@@ -46,7 +46,8 @@ const ProductDetailScreen = (props) => {
       text1: 'Added to cart',
       // text2: 'This is some something 👋',
       topOffset: height * 0.07,
-      text1Style: {fontSize: 20}
+      text1Style: {fontSize: 20},
+      visibilityTime: 2000
     });
   }
 
@@ -90,7 +91,7 @@ const ProductDetailScreen = (props) => {
             {product.description}
           </Text>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
-            <Text className='text-gray text-lg'>
+            <Text className='text-gray-400 text-lg'>
               Brand:
             </Text>
             <Text className='text-black text-lg'>
@@ -98,7 +99,7 @@ const ProductDetailScreen = (props) => {
             </Text>
           </View>
           <View className='flex-row py-2 items-center border-b-2 border-gray-200 justify-between'>
-            <Text className='text-gray text-lg'>
+            <Text className='text-gray-400 text-lg'>
               Category:
             </Text>
             <Text className='text-black text-lg capitalize'>

@@ -1,11 +1,12 @@
-import { View, Text, Dimensions, Image } from 'react-native'
+import { View, Text, Dimensions, Image, Pressable } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Animated, { FadeInDown } from 'react-native-reanimated'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const { width, height } = Dimensions.get('window');
 
-const OrderSummary = () => {
+const OrderSummary = (props) => {
 
   const cart = useSelector((state) => state.cart.cart)
   const totalPrice = cart.map((item) => item.price * item.quantity ).reduce((prev, curr) => prev + curr, 0)
@@ -15,7 +16,7 @@ const OrderSummary = () => {
     <View>
       {cart.map((item, index) => {
         return (
-          <Animated.View className='flex-row p-3 my-2 rounded-xl bg-white' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} entering={FadeInDown.delay(index * 100 + 200).springify()} >
+          <Animated.View className='flex-row p-3 my-2 rounded-xl bg-white' style={{ elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} entering={FadeInDown.delay(index * 100 + 200).springify()} key={index} >
             <Image className='rounded-xl' source={{uri: item.thumbnail}} style={{ width: width * 0.2, height: width * 0.2 }} />
             <View className='flex-1 ml-3 justify-between'>
               <View className='flex-1 justify-between'>
@@ -30,10 +31,15 @@ const OrderSummary = () => {
           </Animated.View>
         )
       })}
-      
+      <Pressable className='flex-row items-center justify-between p-3 rounded-lg bg-gray-100' onPress={() => props.handleOpen()}>
+        <Text className='text-gray-400 text-md'>
+          Use a promo code
+        </Text>
+        <Icon name='chevron-right' size={30} color='black' />
+      </Pressable>
       <View className='my-2'>
         <View className='flex-row items-center justify-between'>
-          <Text className='text-gray text-md'>
+          <Text className='text-gray-400 text-md'>
             Subtotal:
           </Text>
           <Text className='text-black text-md'>
@@ -41,7 +47,7 @@ const OrderSummary = () => {
           </Text>
         </View>
         <View className='flex-row items-center justify-between'>
-          <Text className='text-gray text-md'>
+          <Text className='text-gray-400 text-md'>
             Shipping:
           </Text>
           <Text className='text-black text-md'>
