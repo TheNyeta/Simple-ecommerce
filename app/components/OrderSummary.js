@@ -8,7 +8,9 @@ const { width, height } = Dimensions.get('window');
 
 const OrderSummary = (props) => {
 
+
   const cart = useSelector((state) => state.cart.cart)
+  const coupon = useSelector((state) => state.cart.coupon)
   const totalPrice = cart.map((item) => item.price * item.quantity ).reduce((prev, curr) => prev + curr, 0)
   const shippingPrice = 10
 
@@ -32,8 +34,8 @@ const OrderSummary = (props) => {
         )
       })}
       <Pressable className='flex-row items-center justify-between p-3 rounded-lg bg-gray-100' onPress={() => props.handleOpen()}>
-        <Text className='text-gray-400 text-md'>
-          Use a promo code
+        <Text className='text-gray-500 text-md'>
+          {Object.keys(coupon).length !== 0 ? coupon.title : 'Use a promo code'}
         </Text>
         <Icon name='chevron-right' size={30} color='black' />
       </Pressable>
@@ -46,6 +48,16 @@ const OrderSummary = (props) => {
             {totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
         </View>
+        {Object.keys(coupon).length !== 0 &&
+            <View className='flex-row items-center justify-between'>
+              <Text className='text-gray-400 text-md'>
+                Promo:
+              </Text>
+              <Text className='text-black text-md'>
+                {'-' + (totalPrice * coupon.discount).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+              </Text>
+            </View>
+        }
         <View className='flex-row items-center justify-between'>
           <Text className='text-gray-400 text-md'>
             Shipping:
@@ -59,7 +71,7 @@ const OrderSummary = (props) => {
             Total:
           </Text>
           <Text className='text-black text-xl font-bold'>
-            {(totalPrice + shippingPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+            {(Object.keys(coupon).length !== 0 ? totalPrice + shippingPrice - (totalPrice * coupon.discount) : totalPrice + shippingPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
         </View>
       </View>

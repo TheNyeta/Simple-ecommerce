@@ -13,7 +13,6 @@ const { width, height } = Dimensions.get('window');
 const CartScreen = ({navigation}) => {
 
   const cart = useSelector((state) => state.cart.cart)
-  console.log(cart)
   const totalPrice = cart.map((item) => item.price * item.quantity ).reduce((prev, curr) => prev + curr, 0)
   const dispatch = useDispatch()
 

@@ -1,23 +1,30 @@
 import { View, Text, ScrollView, Pressable, Dimensions } from 'react-native'
-import React, { useCallback, useMemo, useRef } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OrderSummary from '../components/OrderSummary';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet';
+import PromoSelect from '../components/PromoSelect';
+import { cleanCoupon } from '../../redux/reducer/CartReducer';
 
 const { width, height } = Dimensions.get('window');
 
 const CheckoutScreen = ({navigation}) => {
 
   const address = useSelector((state) => state.account.address)
-  console.log(address)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    return () => dispatch(cleanCoupon())
+  }, [])
 
   const handleOpen = () => bottomSheetRef.current.expand()
+  const handleClose = () => bottomSheetRef.current.close()
 
   const bottomSheetRef = useRef(null);
 
-	const snapPoints = useMemo(() => ["50%"], []);
+	const snapPoints = useMemo(() => ["80%"], []);
 
   const renderBackdrop = useCallback(
 		(props) => (
@@ -71,12 +78,12 @@ const CheckoutScreen = ({navigation}) => {
       </ScrollView>
       <BottomSheet
         ref={bottomSheetRef}
-        index={0}
+        index={-1}
         snapPoints={snapPoints}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
       >
-
+        <PromoSelect handleClose={handleClose} />
       </BottomSheet>
     </SafeAreaView>
   )
