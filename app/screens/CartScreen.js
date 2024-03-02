@@ -44,7 +44,7 @@ const CartScreen = ({navigation}) => {
         }
       {/* </ScrollView> */}
       <View className='w-full absolute bottom-0'>
-        <LinearGradient colors={['transparent', '#00000030']} style={{ height: height * 0.01 }}/>
+        {/* <LinearGradient colors={['transparent', '#00000030']} style={{ height: height * 0.01 }}/> */}
         <View className='p-2 flex-row items-center justify-between bg-white' style={{ height: height * 0.08 }}>
           <Text className='p-2 text-black text-xl text-wrap font-bold'>
             {'Total: ' + totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}

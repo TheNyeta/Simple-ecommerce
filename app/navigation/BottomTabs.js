@@ -6,27 +6,28 @@ import HomeScreen from '../screens/HomeScreen';
 import CartScreen from '../screens/CartScreen';
 import AccountScreen from '../screens/AccountScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, { SlideInDown, SlideOutDown, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const { width, height } = Dimensions.get('window');
 
 const Tab = createBottomTabNavigator();
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
-
+  
   const TAB_WIDTH = width / state.routes.length
 
   const animatedStyles = useAnimatedStyle(() => {
     const translateXValue = state.index * TAB_WIDTH;
     return {
-      transform: [{ translateX: withTiming(translateXValue, {duration: 300}) }],
+      transform: [{ translateX: withTiming(translateXValue, {duration: 200}) }],
     };
   });
 
   return (
-    <View className='flex-row bg-white items-center absolute bottom-0 w-full'  style={{ height: height * 0.07 }}>
-      <Animated.View style={[{ width: TAB_WIDTH, position: 'absolute', backgroundColor: 'lightgray', height: height * 0.07 }, animatedStyles]}>
-
+    <SafeAreaView className='flex-row bg-white items-center absolute bottom-0 w-full'  style={{ height: height * 0.07 }}>
+      <Animated.View className='items-center justify-start absolute' style={[{ width: TAB_WIDTH, height: height * 0.07 }, animatedStyles]}>
+        <Animated.View className='bg-[#673ab7] rounded-full mt-1' style={{ width: height * 0.08, height: height * 0.04}} ></Animated.View>
       </Animated.View>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -61,24 +62,31 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
 
         return (
           <Pressable
-            className='flex-1 items-center'
+            className='flex-1 items-center justify-start'
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            // style={{ flex: 1 }}
+            style={{ height: height * 0.07 }}
             key={label}
           >
-            <Icon name={isFocused ? iconName.replace('-outline', '') : iconName } color={isFocused ? '#673ab7' : 'black'} size={30} />
-            <Text style={{ color: isFocused ? '#673ab7' : 'black' }}>
+            <View className='mt-1.5 mb-1'>
+              <Icon name={isFocused ? iconName.replace('-outline', '') : iconName } color={isFocused ? 'white' : 'black'} size={26}/>
+            </View>
+            <Text className='' style={{ color: isFocused ? '#673ab7' : 'black' }}>
               {label}
             </Text>
+            {/* {isFocused && 
+              <Animated.Text style={{ color: isFocused ? '#673ab7' : 'black' }} entering={SlideInDown} exiting={SlideOutDown}>
+                {label}
+              </Animated.Text>
+            } */}
           </Pressable>
         );
       })}
-    </View>
+    </SafeAreaView>
   );
 }
 

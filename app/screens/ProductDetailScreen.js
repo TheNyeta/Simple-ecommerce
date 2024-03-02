@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Dimensions, StatusBar, Pressable } from 'react-native'
+import { View, Text, ScrollView, Dimensions, StatusBar, Pressable, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ProductImageCarousel from '../components/ProductImageCarousel'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,6 +21,8 @@ const ProductDetailScreen = (props) => {
   const [liked, setLiked] = useState(false)
   const dispatch = useDispatch()
   const favorite = useSelector((state) => state.favorite.favorite)
+  const cart = useSelector((state) => state.cart.cart)
+  const totalQuantity = cart.map((item) => item.quantity).reduce((prev, curr) => prev + curr, 0)
 
   useEffect(() => {
     const productInFavorite = favorite.find((item) => item.id === product.id)
@@ -54,6 +56,21 @@ const ProductDetailScreen = (props) => {
   return (
     <View className='flex-1'>
       {/* <StatusBar backgroundColor={'transparent'} translucent={true} /> */}
+      <View className='flex-row bg-white w-full items-center justify-between' style={{ height: height * 0.06 }}>
+        <TouchableOpacity className='p-2' onPress={() => navigation.goBack()}>
+          <Icon name='arrow-left' size={26} color='black' />
+        </TouchableOpacity>
+        <TouchableOpacity className='p-2' onPress={() => navigation.navigate('Cart')}>
+          <Icon name='cart-outline' size={26} color='black' />
+          {cart.length != 0 &&
+            <View className='absolute right-1 top-0 rounded-full w-5 h-5 bg-red-500 items-center justify-center'>
+              <Text className='text-white text-xs'>
+                {totalQuantity}
+              </Text>
+            </View>
+          }
+        </TouchableOpacity>
+      </View>
       <ScrollView className='flex-1 bg-gray' showsVerticalScrollIndicator={false}>
         <ProductImageCarousel images={images} />
         <View className='w-full flex-row justify-between p-2 bg-white'>
@@ -114,11 +131,11 @@ const ProductDetailScreen = (props) => {
           <ProductList />
         </View>
       </ScrollView>
-      <SafeAreaView className='absolute'>
+      {/* <SafeAreaView className='absolute'>
         <Pressable className='m-2 bg-white rounded-full' onPress={() => navigation.goBack()}>
           <Icon name='arrow-left' size={30} color='black' />
         </Pressable>
-      </SafeAreaView>
+      </SafeAreaView> */}
       <View className='w-full absolute bottom-0'>
         <LinearGradient colors={['transparent', '#00000030']} style={{ height: height * 0.01 }}/>
         <View className='p-2 flex-row items-center justify-end bg-white' style={{ height: height * 0.08 }}>
