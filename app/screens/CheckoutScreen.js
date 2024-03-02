@@ -70,7 +70,7 @@ const CheckoutScreen = ({navigation}) => {
           </Text>
           <OrderSummary handleOpen={handleOpen} />
         </View>
-        <Pressable className='p-2 items-center mx-3 bg-green-500 rounded-xl'>
+        <Pressable className='p-2 items-center mx-3 bg-[#673ab7] rounded-xl'>
           <Text className='text-white text-2xl font-bold'>
             Buy Now
           </Text>

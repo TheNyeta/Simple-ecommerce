@@ -122,8 +122,8 @@ const ProductDetailScreen = (props) => {
       <View className='w-full absolute bottom-0'>
         <LinearGradient colors={['transparent', '#00000030']} style={{ height: height * 0.01 }}/>
         <View className='p-2 flex-row items-center justify-end bg-white' style={{ height: height * 0.08 }}>
-          <Pressable className='justify-center items-center rounded-xl bg-gray-300' style={{ width: width * 0.5 }} onPress={() => addItemToCart()}>
-            <Text className='p-2 text-black text-xl text-wrap font-bold'>
+          <Pressable className='justify-center items-center rounded-xl bg-[#673ab7]' style={{ width: width * 0.5 }} onPress={() => addItemToCart()}>
+            <Text className='p-2 text-white text-xl text-wrap font-bold'>
               Add to cart
             </Text>
           </Pressable>

@@ -32,7 +32,7 @@ const PromoSelect = (props) => {
     const isSelected = selectedCoupon == item;
 
     return (
-      <Pressable className='flex-row  mx-4 my-2 rounded-xl bg-white' style={{backgroundColor: isSelected ? 'lightgreen' : 'white', elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} key={index} onPress={() => handleToggleCoupon(item)} >
+      <Pressable className='flex-row  mx-4 my-2 rounded-xl bg-white' style={{backgroundColor: isSelected ? '#d1b5ff' : 'white', elevation: 4, shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.23, shadowRadius: 2.62 }} key={index} onPress={() => handleToggleCoupon(item)} >
         <Image className='rounded-xl' source={item.image} style={{ width: width * 0.3, height: width * 0.3 }} />
         <View className='flex-1 p-2 justify-between'>
           <View className='flex-1 justify-between'>
@@ -57,7 +57,7 @@ const PromoSelect = (props) => {
         extraData={selectedCoupon}
 
       />
-      <Pressable className='p-2 m-4 items-center bg-green-500 rounded-lg' onPress={() => setCoupon()}>
+      <Pressable className='p-2 m-4 items-center bg-[#673ab7] rounded-lg' onPress={() => setCoupon()}>
         <Text className='text-white text-xl font-bold'>
           Confirm Promo
         </Text>

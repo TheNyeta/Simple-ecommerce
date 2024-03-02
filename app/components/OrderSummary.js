@@ -33,8 +33,8 @@ const OrderSummary = (props) => {
           </Animated.View>
         )
       })}
-      <Pressable className='flex-row items-center justify-between p-3 rounded-lg bg-gray-100' onPress={() => props.handleOpen()}>
-        <Text className='text-gray-500 text-md'>
+      <Pressable className='flex-row items-center justify-between p-3 rounded-lg bg-gray-100' style={{backgroundColor: Object.keys(coupon).length !== 0 ? '#d1b5ff' : 'lightgray' }} onPress={() => props.handleOpen()}>
+        <Text className='text-black text-md'>
           {Object.keys(coupon).length !== 0 ? coupon.title : 'Use a promo code'}
         </Text>
         <Icon name='chevron-right' size={30} color='black' />

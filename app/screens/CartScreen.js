@@ -49,7 +49,7 @@ const CartScreen = ({navigation}) => {
           <Text className='p-2 text-black text-xl text-wrap font-bold'>
             {'Total: ' + totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </Text>
-          <Pressable className='justify-center items-center rounded-xl' style={{ width: width * 0.5, backgroundColor: cart.length == 0 ? 'gray' : 'green' }} disabled={cart.length == 0 ? true : false} onPress={() => handleCheckout()}>
+          <Pressable className='justify-center items-center rounded-xl' style={{ width: width * 0.5, backgroundColor: cart.length == 0 ? 'lightgray' : '#673ab7' }} disabled={cart.length == 0 ? true : false} onPress={() => handleCheckout()}>
             <Text className='p-2 text-white text-xl text-wrap font-bold'>
               Checkout
             </Text>
